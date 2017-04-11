@@ -21,14 +21,33 @@ namespace CustomerTests
             //TestcustomerValidators();
 
             //TestWholesaleCustomer();
-            TestRetailCustomer();
+            //TestRetailCustomer();
 
+            
 
             Console.WriteLine();
             Console.ReadLine();
         }
 
         //this one is new
+        static void TestCustomerList2()
+        {
+            Console.WriteLine("constructing");
+            CustomerList2 cl = new CustomerList2();
+            Console.WriteLine("Creating 2 customers: chris robbins, danny dunham");
+            Customer c1 = new Customer("Chris", "Robbins", "robbinsc@gmail.com");
+            Customer c2 = new Customer("Danny", "Dunham", "dunhamd@gmail.com");
+            Console.WriteLine("Adding the tree customers to the list, then will test output");
+            cl.Add(c1);
+            cl.Add(c2);
+            //add customer by name
+            //test +=/-= operator
+            //email address as index
+            // tostring
+
+
+        }
+
         static void TestRetailCustomer()
         {
             RetailCustomer rc = new RetailCustomer("john", "bell", "contact@conquest-marketing.com", "(541) 579-6627");

@@ -18,13 +18,41 @@ namespace CustomerTests
 
             //TestCustomerFNameEx();
 
-            TestcustomerValidators();
+            //TestcustomerValidators();
+
+            //TestWholesaleCustomer();
+            TestRetailCustomer();
+
 
             Console.WriteLine();
             Console.ReadLine();
         }
 
         //this one is new
+        static void TestRetailCustomer()
+        {
+            RetailCustomer rc = new RetailCustomer("john", "bell", "contact@conquest-marketing.com", "(541) 579-6627");
+
+            Console.WriteLine("Testing Retail Customer");
+            Console.WriteLine("Expecting john bell contact@conquest-marketing.com (541) 579-6627");
+             Console.WriteLine(rc);
+            Console.WriteLine("Testing Property, Setting Phone Number to (541) 968-0452");
+            rc.Phone = "(541) 968-0452";
+            Console.WriteLine("Expecting just the new phone number: " + rc.Phone);
+
+        }
+
+        static void TestWholesaleCustomer()
+        {
+            WholesaleCustomer wc = new WholesaleCustomer("john", "bell", "contact@conquest-marketing.com", "Conquest Marketing");
+            Console.WriteLine("Testing WholeSale Constructor");
+            Console.WriteLine("Expecting john bell contact@conquest-marketing.com works for Conquest Marketing");
+            Console.WriteLine(wc);
+            Console.WriteLine("Changing Company property to Banana Haven");
+            wc.Company = "Banana Haven";
+            Console.WriteLine("Outputting Company property, expecting Banana Haven: " + wc.Company);
+        }
+
         static void TestcustomerValidators()
         {
             Customer c1 = new Customer();

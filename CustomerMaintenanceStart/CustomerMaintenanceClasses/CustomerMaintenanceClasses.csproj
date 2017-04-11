@@ -45,7 +45,9 @@
     <Compile Include="CustomerDB.cs" />
     <Compile Include="CustomerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RetailCustomer.cs" />
     <Compile Include="Validator.cs" />
+    <Compile Include="WholesaleCustomer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

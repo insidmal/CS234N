@@ -15,11 +15,15 @@ namespace CustomerMaintenanceClasses
 
         public void Fill()
         {
-            //this = CustomerDB.GetCustomers();
+            List<Customer> customers = CustomerDB.GetCustomers();
+            foreach (Customer c in customers) {
+                this.Add(c);
+            }
         }
 
         public Boolean Save()
         {
+            //textbook author website has updated Db class info, look it up foo you need to know this!
             try { CustomerDB.SaveCustomers(this); return true; }
             catch { return false; }
         }

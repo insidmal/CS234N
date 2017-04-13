@@ -8,14 +8,15 @@ namespace ClassClassLibrary
 {
     public class Hand
     {
-        private List<Card> hand = new List<Card>();
+        protected List<Card> hand = new List<Card>();
 
         public Hand()
         {
-            Deck d1 = new Deck();
+           /* Deck d1 = new Deck();
             d1.Shuffle();
             for (int i = 0; i < 5; i++) hand.Add(d1.Deal());
-        }
+    */    
+    }
 
         public Hand(List<Card> cards)
         {

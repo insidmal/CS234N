@@ -11,19 +11,68 @@ namespace CardTests
     {
         static void Main(string[] args)
         {
-            //TO DO:
-            // write properties from slide 10 - designing a class
-            // test properties
 
             //write methods from slide 10; all are true or false; don't need to test console
             //TestCardConstructors(1,3);
 
             //TestDeck();
-            TestHand();
+            // TestHand();
+            TestBJHand();
+
             Console.WriteLine();
             Console.ReadLine();
 
         }
+
+
+        static void TestBJHand()
+        {
+            Console.WriteLine("Testing Score with just Aces to check my value");
+            BJHand bj = new BJHand();
+            Card c = new Card(14, 1);
+            bj.Add(c);
+            Console.WriteLine("Expecting Ace from Card object: " + c);
+            if (bj.HasAce() == true) {
+                Console.WriteLine("Has ace tested true");
+            }
+            else Console.WriteLine("has ace tested false");
+
+            Console.WriteLine("We already have an ace, now adding a King");
+            Card c2 = new Card(13, 2);
+            bj.Add(c2);
+            Console.WriteLine("Score should be 21 (ace + king): " + bj.Score);
+            Console.WriteLine("Rcreating a new bj hand with an ace and a jack");
+            BJHand bj2 = new BJHand();
+            bj2.Add(c);
+            Card c3 = new Card(11, 3);
+            Console.WriteLine("testing me new card to make sure it is correct card I created: " + c3);
+            bj2.Add(c3);
+            Console.WriteLine("testing ace and jack, expecting 21: " + bj.Score);
+
+            Console.WriteLine("adding another card to give the ace a 1 value, adding a 5");
+            Card c4 = new Card(5, 4);
+            bj2.Add(c4);
+            Console.WriteLine("expecting score 16 (ace(1), jack(10), 5): " + bj2.Score);
+            Console.WriteLine("Busting hand to make it over 21, adding 2 more 5 card objects");
+            bj2.Add(c4);
+            bj2.Add(c4);
+            if (bj2.IsBusted())
+                Console.WriteLine("Busted returned true, here is the score (ace(1), jack(10), 5, 5, 5): " + bj2.Score);
+            else Console.WriteLine("Busted returned false");
+            Console.WriteLine("Testing a new hand with no aces, adding a king and 5 created earlier for simplicity");
+            BJHand bj3 = new BJHand();
+            bj3.Add(c2);
+            bj3.Add(c4);
+            Console.WriteLine("Score should be 15 (king + 5): " + bj3.Score);
+            Console.WriteLine("busting without an ace");
+            bj3.Add(c4);
+            bj3.Add(c4);
+            if (bj3.IsBusted() == true)
+                Console.WriteLine("Busted true, score should be 25: " + bj3.Score);
+            else Console.WriteLine("Bust failed! Houston you have a problem!");
+
+        }
+
 
         static void TestHand()
         {

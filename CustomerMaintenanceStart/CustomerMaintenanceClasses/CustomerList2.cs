@@ -59,5 +59,15 @@ namespace CustomerMaintenanceClasses
             return cList;
         }
 
+        public override string ToString()
+        {
+            string s = "";
+            foreach(Customer c in this)
+            {
+                s += c + "; ";
+            }
+            return s;
+        }
+
     }
 }

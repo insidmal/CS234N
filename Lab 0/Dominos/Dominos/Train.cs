@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MTDClasses;
 
 
-namespace Dominos
+namespace MTDClasses
 {
     class Train
     {
@@ -45,7 +45,9 @@ namespace Dominos
 
         public Domino LastDomino
         {
-            get { return dominos[dominos.Count - 1]; }
+
+            get { if (Count == 0) return null;
+                else return dominos[dominos.Count - 1]; }
         }
 
         public int PlayableValue
@@ -71,7 +73,7 @@ namespace Dominos
             //i don't know the rules of the game so am just guessing assumption that my IsPlayable is correct, and also going to make an assumption that if it is side1 they don't need to flip, and if it is side2 that they do? also assuming they can only play on the last domino in the train
             if (LastDomino.Side1 == d.Side1) { mustFlip = false; return true; }
             else if (LastDomino.Side2 == d.Side2) { mustFlip = true; return true; }
-            else return false;
+            else { mustFlip = false; return false; }
 
         }
 
@@ -86,6 +88,8 @@ namespace Dominos
             //i have no idea what this is supposed to do
             return "noidea_string";
         }
+
+        
 
         public override string ToString()
         {

@@ -23,7 +23,7 @@ namespace CustomerTests
             //TestWholesaleCustomer();
             //TestRetailCustomer();
 
-            
+            TestCustomerList2();
 
             Console.WriteLine();
             Console.ReadLine();
@@ -37,13 +37,21 @@ namespace CustomerTests
             Console.WriteLine("Creating 2 customers: chris robbins, danny dunham");
             Customer c1 = new Customer("Chris", "Robbins", "robbinsc@gmail.com");
             Customer c2 = new Customer("Danny", "Dunham", "dunhamd@gmail.com");
-            Console.WriteLine("Adding the tree customers to the list, then will test output");
+            Console.WriteLine("Adding two customers to the list, then will test output");
             cl.Add(c1);
             cl.Add(c2);
-            //add customer by name
-            //test +=/-= operator
-            //email address as index
-            // tostring
+            Console.WriteLine(cl);
+            Console.WriteLine("Addinc a third customer by name then will test output");
+            cl.Add("Sam", "Sermino", "serminos@gmail.com");
+            Console.WriteLine(cl);
+            Console.WriteLine("Removing customer 1 (Chris) using - operator");
+            cl -= c1;
+            Console.WriteLine(cl);
+            Console.WriteLine("Adding Chris back using +=");
+            cl += c1;
+            Console.WriteLine(cl);
+            Console.WriteLine("Testing email address as index, using Sam's email");
+            Console.WriteLine(cl["serminos@gmail.com"]);
 
 
         }

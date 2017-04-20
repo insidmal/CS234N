@@ -72,7 +72,6 @@ using NUnit.Framework;
         [Test]
         public void TestToSTring()
         {
-            //I wasn't sure what to expect with tostring output so just put it in a pass message that can be checked in text explorer
             Assert.AreEqual("Side 1: 0  Side 2: 0\n", b2.ToString());
         }
     }

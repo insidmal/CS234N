@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTDClasses;
 
 
 namespace MTDClasses
 {
-    class Train
+    public class Train
     {
-        private List<Domino> dominos;
+        private List<Domino> dominos = new List<Domino>();
         private int engineValue;
 
         public Train()
         {
-            engineValue = 1;
+            engineValue = 6;
         }
 
         public Train(int engineVal)
@@ -24,9 +23,6 @@ namespace MTDClasses
         }
 
         #region properties
-
-        public int Count
-        { get { return dominos.Count; } }
 
         public int EngineValue
         {
@@ -46,14 +42,19 @@ namespace MTDClasses
         public Domino LastDomino
         {
 
-            get { if (Count == 0) return null;
+            get { if (dominos.Count == 0)
+                {
+                    Domino d1 = new Domino(EngineValue, EngineValue);
+                    return d1;
+                }
                 else return dominos[dominos.Count - 1]; }
         }
 
         public int PlayableValue
         {
-            //I'm not familiar with the game so don't know what the playable value is supposed to be, I assumed it was a side of last played domino but that was just a guess
-            get { return LastDomino.Side2; }
+            //assuming side2 of the last dominos is the one on the open end of the train
+            get { if (IsEmpty) return EngineValue;
+                else return LastDomino.Side2; }
         }
 
         public Domino this[int i]
@@ -70,17 +71,21 @@ namespace MTDClasses
 
         public bool IsPlayable(Domino d, out bool mustFlip)
         {
-            //i don't know the rules of the game so am just guessing assumption that my IsPlayable is correct, and also going to make an assumption that if it is side1 they don't need to flip, and if it is side2 that they do? also assuming they can only play on the last domino in the train
-            if (LastDomino.Side1 == d.Side1) { mustFlip = false; return true; }
-            else if (LastDomino.Side2 == d.Side2) { mustFlip = true; return true; }
-            else { mustFlip = false; return false; }
+            //I'm assuming that side 2 is the end right side and side 1 is left and that we're moving right so side 1 of played domino connects to side 2 of dominos on train
+                if (LastDomino.Side2 == d.Side1) { mustFlip = false; return true; }
+                else if (LastDomino.Side2 == d.Side2) { mustFlip = true; return true; }
+                else { mustFlip = false; return false; }
+            }
 
-        }
 
         public void Play(Domino d)
         {
-            //not sure what playing a domino is, but assuming when one is played it is added on to the train?
-            dominos.Add(d);
+            bool flip;
+            if (IsPlayable(d, out flip))
+            {
+                if (flip) d.Flip();
+                Add(d);
+            }
         }
 
         public string Show(int number)
@@ -96,9 +101,10 @@ namespace MTDClasses
             string r = "";
             foreach(Domino d in dominos)
             {
-                r += d + "; ";
+                r += d + "/n";
                 
             }
+            return r;
         }
 
     }

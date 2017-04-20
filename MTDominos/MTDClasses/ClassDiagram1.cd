@@ -3,7 +3,7 @@
   <Class Name="MTDClasses.Train">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAJCAAAAAAAAAIAECIAQAAQAAAAEAAoAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAJCAAAAAAAAAIAECIAQAAAAAAAEAAoAgAAAAAAAAAA=</HashCode>
       <FileName>Train.cs</FileName>
     </TypeIdentifier>
   </Class>

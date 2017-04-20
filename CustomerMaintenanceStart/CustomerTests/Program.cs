@@ -15,21 +15,51 @@ namespace CustomerTests
             //TestCustomerConstructors();
             //TestCustomerGetters();
             //TestCustomerSetters();
-
             //TestCustomerFNameEx();
-
             //TestcustomerValidators();
-
             //TestWholesaleCustomer();
             //TestRetailCustomer();
-
-            TestCustomerList2();
+            //TestCustomerList2();
+            //TestRetailCustomer();
+            //TestWholesaleCustomer();
+            testforeach();
+            //TestCustomerClone();
 
             Console.WriteLine();
             Console.ReadLine();
         }
 
         //this one is new
+        static void testforeach()
+        {
+            CustomerList cl = new CustomerList();
+            Customer c1 = new Customer("Chris", "Robbins", "robbinsc@gmail.com");
+            Customer c2 = new Customer("Danny", "Dunham", "dunhamd@gmail.com");
+            cl.Add(c1);
+            cl.Add(c2);
+
+        foreach(Customer c in cl)
+            {
+                Console.WriteLine(c);
+            }
+
+        }
+
+        static void TestCustomerClone()
+        {
+            Console.WriteLine("testing clone");
+            Customer c1 = new Customer("John", "Bell", "john@conquest-marketing.com");
+           Customer c2 = (Customer)c1.Clone();
+            Console.WriteLine("c1: " + c1);
+            Console.WriteLine("c2: " + c2);
+            Console.WriteLine("changing one");
+            c1.FirstName = "Orange";
+            Console.WriteLine("c1: " + c1);
+            Console.WriteLine("c2: " + c2);
+
+
+        }
+
         static void TestCustomerList2()
         {
             Console.WriteLine("constructing");

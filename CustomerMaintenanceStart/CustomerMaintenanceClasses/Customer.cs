@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CustomerMaintenanceClasses
 {
-    public class Customer
+    public class Customer : ICloneable, IComparable<Customer>
     {
         private string fName;
         private string lName;
@@ -61,7 +61,19 @@ namespace CustomerMaintenanceClasses
         {
             return fName + " " + lName + " (" + eMail + ")";
         }
-        
+
+        public object Clone()
+        {
+            return new Customer(FirstName, LastName, Email);
+            
+        }
+
+        public int CompareTo(Customer other)
+        {
+            if (FirstName == other.FirstName && LastName == other.LastName && Email == other.Email) return 1;
+            else return 0;
+
+        }
     }
 
  

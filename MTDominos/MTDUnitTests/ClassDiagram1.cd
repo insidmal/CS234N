@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MTDUnitTests.BoneYardTests">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAABAAAAAAAAAAAAAAAAAAABgEAAACAAgAAAEAAA=</HashCode>
+      <FileName>BoneYardTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTDUnitTests.TrainTests">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAiAAAABAhAAAAAAEAAAAAhBAgAAIAQgACAAAAIQ=</HashCode>
+      <FileName>TrainTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

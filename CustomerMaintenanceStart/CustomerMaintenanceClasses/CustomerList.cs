@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace CustomerMaintenanceClasses
     //page 437
     // test in customertests console
     //there's an existing start file from this so stop here and work from there
-    public class CustomerList
+    public class CustomerList : IEnumerable<Customer>
     {
         private List<Customer> customers;
 
@@ -89,5 +90,18 @@ namespace CustomerMaintenanceClasses
         }
 
 
+        public IEnumerator<Customer> GetEnumerator()
+        {
+
+            foreach (Customer c in customers)
+            {
+                yield return c;
+            }
+        }
+
+     IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

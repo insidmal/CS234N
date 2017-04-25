@@ -8,8 +8,16 @@ namespace ClassClassLibrary
 {
    public class Deck
     {
+
+        //events for busted
+        //events for blackjack
+        //events
+
         private List<Card> cards;
         private static Random rnd = new Random();
+
+        public delegate void EmptyHandler(Deck d);
+        public event EmptyHandler Empty;
 
         public Deck()
         {
@@ -23,6 +31,7 @@ namespace ClassClassLibrary
 
                 }
             }
+            Empty = new EmptyHandler(HandleEmpty);
         }
 
         public int NumCards
@@ -53,9 +62,17 @@ namespace ClassClassLibrary
 
         public Card Deal()
         {
-            Card card = cards[0];
-            cards.RemoveAt(0);
-            return card;
+            if (NumCards>12)
+            {
+                Card card = cards[0];
+                cards.RemoveAt(0);
+                return card;
+            } else { Empty(this); return null; }
+        }
+
+        public void HandleEmpty(Deck d)
+        {
+            //internal way to handle empty, handler added in constructor
         }
 
         public override string ToString()

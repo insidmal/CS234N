@@ -1,0 +1,4 @@
+John|Smith|johnsmith@gmail.com
+Jane|Doe|janedoe@yahoo.com
+John|Bell|john@conquest-marketing.com
+Symantha|Sermino|ssermino@gmail.com

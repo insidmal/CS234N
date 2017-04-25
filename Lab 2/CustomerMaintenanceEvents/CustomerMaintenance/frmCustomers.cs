@@ -22,8 +22,12 @@ namespace CustomerMaintenance
         private void frmCustomers_Load(object sender, EventArgs e)
         {
             // register the event and it's delegate here
+            customers.Changed += delegate(CustomerList customers) {
+            customers.Save();
+            FillCustomerListBox();
+        };
 
-            customers.Fill();
+        customers.Fill();
             FillCustomerListBox();
         }
 
@@ -65,6 +69,9 @@ namespace CustomerMaintenance
         }
 
         // write an event the event handler here
+
+        //private void DemChangesTho(CustomerList cl)
+
 
         private void btnExit_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClassClassLibrary
 {
-    public class Hand
+    public class Hand : IEnumerable
     {
         protected List<Card> hand = new List<Card>();
 
@@ -115,5 +116,13 @@ namespace ClassClassLibrary
 
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            foreach(Card c in hand)
+            {
+
+                yield return c;
+            }
+        }
     }
 }

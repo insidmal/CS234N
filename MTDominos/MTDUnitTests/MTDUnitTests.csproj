@@ -47,6 +47,7 @@
     <Compile Include="BoneYardTests.cs" />
     <Compile Include="DominoTests.cs" />
     <Compile Include="HandTests.cs" />
+    <Compile Include="PrivateTrainTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainTests.cs" />
   </ItemGroup>

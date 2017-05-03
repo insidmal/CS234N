@@ -47,7 +47,7 @@ namespace MTDClasses
                     Domino d1 = new Domino(EngineValue, EngineValue);
                     return d1;
                 }
-                else return dominos[dominos.Count - 1]; }
+                else throw new Exception("No Dominos Remain"); }
         }
 
         public int PlayableValue
@@ -86,6 +86,7 @@ namespace MTDClasses
                 if (flip) d.Flip();
                 Add(d);
             }
+            else throw new ArgumentException("Domnio " + d + " cannot be played.");
         }
 
         public string Show(int number)

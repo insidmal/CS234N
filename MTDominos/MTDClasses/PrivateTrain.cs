@@ -27,6 +27,7 @@ namespace MTDClasses
         {
             get { return isOpen; } 
         }
+
         public void Open()
         {
             isOpen = true;
@@ -56,7 +57,17 @@ namespace MTDClasses
 
             }
         }
+        public void Play(Domino d, Hand h)
+        {
+            bool mustFlip;
+            if (IsPlayable(d, out mustFlip, h))
+            {
+                if (mustFlip == true) d.Flip();
+                base.Play(d);
+                Add(d);
+            }
+            else throw new ArgumentException("Domino " + d + " cannot be played.");
+
+        }
     }
-
-
 }

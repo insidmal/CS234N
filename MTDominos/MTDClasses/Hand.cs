@@ -62,33 +62,12 @@ namespace MTDClasses
             Add(d);
         }
 
-        public bool HasDomino(int pipValue)
-        {
-            foreach (Domino d in handOfDominos)
-            {
-                if (d.Side1 == pipValue || d.Side2 == pipValue) return true;
-            }
-            return false;
-        }
 
 
-        public Domino GetDomino(int pipValue)
-        {
-            if (HasDomino(pipValue))
-            {
-                foreach (Domino d in handOfDominos)
-                {
-                    if (d.Side1 == pipValue || d.Side2 == pipValue) return d;
-                }
-                return null;
-            }
-            else return null;
-        }
+
 
         public int IndexOfDomino(int pipValue)
         {
-            if (HasDomino(pipValue))
-            {
                 int i = 0;
                 foreach (Domino d in handOfDominos)
                 {
@@ -96,87 +75,142 @@ namespace MTDClasses
                     i++;
                 }
                 return -1;
-            }
+        }
+
+
+        public bool HasDomino(int pipValue)
+        {
+            if (IndexOfDomino(pipValue) <0) return false;
+            return true;
+        }
+
+
+        public Domino GetDomino(int pipValue)
+        {
+            int i = IndexOfDomino(pipValue);
+            if (i < 0) throw new Exception("Domino not in hand");
             else
             {
-                return -1;
+                RemoveAt(i);
+                return handOfDominos[i];
             }
         }
 
 
-        public bool HasDoubleDomino(int pipValue)
+
+
+        public int IndexOfDoubleDomino(int pipValue)
         {
+
+            int i = 0;
             foreach (Domino d in handOfDominos)
             {
-                if (d.Side1 == pipValue && d.Side2 == pipValue) return true;
+                if (d.Side1 == d.Side2 && d.Side1 == pipValue) return i;
+                i++;
             }
-            return false;
+            return -1;
         }
 
-
-
-        public Domino GetDoubleDomino(int pipValue)
+        public List<int> IndexesOfDoubles()
         {
-            if (HasDoubleDomino(pipValue)) {
-                foreach (Domino d in handOfDominos)
-                {
-                    if (d.Side1 == d.Side2 && d.Side1 == pipValue) return d;
-                }
-                return null;
-            }
-            else return null;
-        }
-
-
-
-
-
-
-
-        public int IndexOfDoubleDomino (int pipValue)
-        {
-            if (HasDoubleDomino(pipValue))
+            List<int> i = new List<int>();
+            int ind = 0;
+            foreach (Domino d in handOfDominos)
             {
-                int i = 0;
-                foreach (Domino d in handOfDominos)
-                {
-                    if (d.Side1 == d.Side2 && d.Side1 == pipValue) return i;
-                    i++;
-                }
-                return -1;
+                if (d.Side1 == d.Side2) i.Add(ind);
+                ind ++;
             }
-            else return -1;
+            return i;
+
         }
 
         public int IndexOfHighDouble()
         {
             int h = -1;
-            int i = 0;
-           foreach(Domino d in handOfDominos)
+
+            foreach (int ind in IndexesOfDoubles())
             {
-                if (d.Side1 == d.Side2 && d.Side1 > h) h = d.Side1;
-                i++;
+                if (handOfDominos[ind].Side1> h) h = handOfDominos[ind].Side1;
             }
             if (h >= 0) return IndexOfDoubleDomino(h);
             else return h;
+
+        }
+
+
+
+
+
+        public bool HasDoubleDomino(int pipValue)
+        {
+            if (IndexOfDoubleDomino(pipValue) <0) return false;
+            return true;
+        }
+
+
+        public Domino GetDoubleDomino(int pipValue)
+        {
+            int i = IndexOfDoubleDomino(pipValue);
+            if (i < 0)
+                throw new Exception("No Double Domino With Value of " + pipValue);
+            else {
+                RemoveAt(i);
+                return handOfDominos[i];
+            }
         
         }
 
-        public void Play(Domino d, Train t)
-        {
-            handOfDominos.Remove(d);
-            t.Add(d);
-        }
+
+
+
+
 
         public void Play(int i, Train t)
         {
+            Domino d = handOfDominos[i];
+            bool mustFlip = false;
+            if (t is PrivateTrain)
+            {
+                PrivateTrain pt = (PrivateTrain)t;
+                if (pt.IsPlayable(d, out mustFlip, this))
+                    handOfDominos.RemoveAt(i);
+                if (mustFlip) d.Flip();
+                pt.Play(d, this);
+            }
+            else throw new Exception("Domino " + d.ToString() + " does not match the train.");
+
             handOfDominos.RemoveAt(i);
             t.Add(handOfDominos[i]);
         }
 
-        public void Play(Train t)
+        public void Play(Domino d, Train t)
         {
-            //??????
+            int i = handOfDominos.IndexOf(d);
+            if (i != -1)
+            {
+                Play(i, t);
+            }
+            else throw new Exception("Domino " + d + " not in hand.");
+            handOfDominos.Remove(d);
+            t.Add(d);
+        }
+
+        public Domino Play(Train t)
+        {
+            //computers turn, going to take in train and then find a domino for it from this hand
+            int pv = t.PlayableValue;
+            int i = IndexOfDomino(pv);
+            if (i != -1)
+            {
+                Domino d = this[i];
+                Play(i, t);
+                return d;
+                //raise event so ui knows to draw?
+            }
+            else
+            {
+                throw new Exception("No playable Domino");
+            }
         }
 
         public void RemoveAt(int i)

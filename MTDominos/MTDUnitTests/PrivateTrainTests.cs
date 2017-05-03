@@ -11,7 +11,6 @@ namespace MTDUnitTests
     [TestFixture]
     class PrivateTrainTests
     {
-        //close open play isplayable constructor and isopen property
 
         Hand h1;
         Hand h2;
@@ -57,8 +56,6 @@ namespace MTDUnitTests
         [Test]
         public void PTtestPlay()
         {
-
-            //not working!!!
             pt1.Play(d1);
             Assert.AreEqual(6, pt1.PlayableValue);
         }

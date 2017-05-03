@@ -14,8 +14,8 @@ namespace MTDUnitTests
     {
 
         Hand h1 = new Hand();
-        BoneYard by = new BoneYard(12);
-        BoneYard by2 = new BoneYard(12);
+        BoneYard by;
+        BoneYard by2;
 
         Hand h2 = null;
         Hand h3 = null;
@@ -31,8 +31,11 @@ namespace MTDUnitTests
         [SetUp]
         public void HandSetUpTests()
         {
+           by = new BoneYard(12);
+            by2 = new BoneYard(12);
+
             //used h1, h2, 3, 5, 6
-           h2 = new Hand(by, 4);
+            h2 = new Hand(by, 4);
            h3 = new Hand(by, 6);
             h4 = new Hand(by, 10);
             h5 = new Hand(by2, 4);
@@ -142,13 +145,13 @@ namespace MTDUnitTests
         [Test]
         public void HandTestGet()
         {
-            Assert.AreEqual("Side 1: 1  Side 2: 1", h5.GetDomino(1).ToString());
+            Assert.AreEqual("Side 1: 1  Side 2: 1", h6.GetDomino(1).ToString());
         }
 
         [Test]
         public void HandTestGetDouble()
         {
-            Assert.AreEqual("Side 1: 1  Side 2: 1", h5.GetDomino(1).ToString());
+            Assert.AreEqual("Side 1: 1  Side 2: 1", h7.GetDomino(1).ToString());
         }
         //this still needs to be finished
 

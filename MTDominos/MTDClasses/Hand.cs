@@ -91,8 +91,9 @@ namespace MTDClasses
             if (i < 0) throw new Exception("Domino not in hand");
             else
             {
+                Domino d = handOfDominos[i];
                 RemoveAt(i);
-                return handOfDominos[i];
+                return d;
             }
         }
 
@@ -154,8 +155,9 @@ namespace MTDClasses
             if (i < 0)
                 throw new Exception("No Double Domino With Value of " + pipValue);
             else {
+                Domino d = handOfDominos[i];
                 RemoveAt(i);
-                return handOfDominos[i];
+                return d;
             }
         
         }

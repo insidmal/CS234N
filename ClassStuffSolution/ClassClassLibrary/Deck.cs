@@ -24,7 +24,7 @@ namespace ClassClassLibrary
             cards = new List<Card>();
             for(int s = 1;s<=4; s++)
             {
-                for(int v = 1; v<=14;v++)
+                for(int v = 2; v<=14;v++)
                 {
                     Card card = new Card(v, s);
                     cards.Add(card);
@@ -62,7 +62,7 @@ namespace ClassClassLibrary
 
         public Card Deal()
         {
-            if (NumCards>12)
+            if (NumCards>0)
             {
                 Card card = cards[0];
                 cards.RemoveAt(0);

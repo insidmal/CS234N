@@ -25,6 +25,8 @@ namespace ClassClassLibrary
             for (int i = 0; i < max; i++) hand.Add(cards[i]);
         }
 
+
+
         public int NumCards
         {
             get { return hand.Count; }

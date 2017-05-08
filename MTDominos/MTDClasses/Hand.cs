@@ -199,7 +199,7 @@ namespace MTDClasses
 
         public Domino Play(Train t)
         {
-            //computers turn, going to take in train and then find a domino for it from this hand
+            //computers turn, going to take in train and then find a domino for it from `this` hand
             int pv = t.PlayableValue;
             int i = IndexOfDomino(pv);
             if (i != -1)

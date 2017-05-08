@@ -115,7 +115,7 @@ namespace MTDUnitTests
         }
 
         [Test]
-        public void TestHasDomino()
+        public void HandTestHasDomino()
         {
             //actually going to test with a domino we don't have, this will let me test the opposite return of indexofdomino
 
@@ -153,8 +153,16 @@ namespace MTDUnitTests
         {
             Assert.AreEqual("Side 1: 1  Side 2: 1", h7.GetDomino(1).ToString());
         }
-        //this still needs to be finished
 
-        //don't forget to do get domino or whatever
+        [Test]
+        public void HandTestRemoveAt()
+        {
+            Assert.AreEqual(4, h7.Count);
+            h7.RemoveAt(0);
+            Assert.AreEqual(3, h7.Count);
+        }
+        [TearDown]
+
+
     }
 }

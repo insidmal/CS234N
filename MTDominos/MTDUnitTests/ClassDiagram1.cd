@@ -14,5 +14,10 @@
       <FileName>TrainTests.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="MTDClasses.Hand">
+    <Position X="5.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

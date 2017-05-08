@@ -16,8 +16,8 @@ namespace CardTests
             //TestCardConstructors(1,3);
 
             //TestDeck();
-            // TestHand();
-            TestBJHand();
+             TestHand();
+            //TestBJHand();
 
             Console.WriteLine();
             Console.ReadLine();
@@ -76,9 +76,9 @@ namespace CardTests
 
         static void TestHand()
         {
-            Console.WriteLine("Testing Empty Constructor");
-            Hand h2 = new Hand();
-            Console.WriteLine("Output expected: Random 5 card hand: " + h2);
+            //Console.WriteLine("Testing Empty Constructor");
+            //Hand h2 = new Hand();
+            //Console.WriteLine("Output expected: Random 5 card hand: " + h2);
             Console.WriteLine("Testing Constructor using List of Cards");
             List<Card> cards = new List<Card>() { new Card(1, 1), new Card(1,2), new Card(2,1), new Card(2,3), new Card(4,4) };
             Hand h1 = new Hand(cards);

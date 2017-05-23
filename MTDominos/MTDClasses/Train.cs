@@ -44,7 +44,7 @@ namespace MTDClasses
 
             get { if (dominos.Count == 0)
                 {
-                    throw new Exception("The train does not contain any Dominos.");
+                    return new Domino(engineValue, engineValue);
                 }
                 else return dominos[dominos.Count - 1]; }
         }
@@ -76,6 +76,10 @@ namespace MTDClasses
                 else { mustFlip = false; return false; }
             }
 
+        public int Count
+        {
+            get { return dominos.Count(); }
+        }
 
         public void Play(Domino d)
         {

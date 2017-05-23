@@ -84,11 +84,13 @@ namespace MTDUnitTests
             Assert.AreEqual("Side 1: 6  Side 2: 1", t4[0].ToString());
         }
 
+        [Test]
         public void TestGetEnginveValue()
         {
             Assert.AreEqual(6, t1.EngineValue);
         }
 
+        [Test]
         public void TestSetEnginveValue()
         {
             t4.EngineValue = 2;
@@ -97,6 +99,33 @@ namespace MTDUnitTests
         //GETS FOR ALL
         //EngineValue + SET
 
+        [Test]
+        public void TestPlaying()
+        {
+            Domino d1 = new Domino(1, 2);
+            Train t1 = new Train(1);
+
+            try
+            {
+                int i = t1.PlayableValue;
+                Assert.Fail("PlayableValue should be exception");
+            }
+            catch {
+                Assert.Pass();
+            }
+
+            Assert.AreEqual(0, t1.Count);
+            t1.Play(d1);
+            Assert.AreEqual(2, t1.PlayableValue);
+            Assert.AreEqual(1, t1.Count);
+
+        }
+
+
+        //Design an nUnit unit test that ensures that playing a Domino 
+        //that contains the PlayableValue for a
+        //(Mexican or Public) Train can be played AND that the 
+        //PlayableValue and Count are updated appropriately.
 
 
 

@@ -12,6 +12,7 @@ namespace CustomerMaintenance
     {
         public static Customer GetCustomer(int customerID)
         {
+            //executereader returns the data set... always use this weird variable things in the statements
             SqlConnection connection = MMABooksDB.GetConnection();
             string selectStatement
             = "SELECT CustomerID, Name, Address, City, "
@@ -24,6 +25,9 @@ namespace CustomerMaintenance
             "@CustomerID", customerID);
             try
             {
+
+                //execute reader commandbehavior.singlerow returns one row, use it to save db mem
+
                 connection.Open();
                 SqlDataReader custReader =
                 selectCommand.ExecuteReader(
@@ -76,6 +80,10 @@ namespace CustomerMaintenance
             "@ZipCode", customer.ZipCode);
             try
             {
+
+                //gets the id of the last entry added so we can return it back to the object
+
+                //executescalar returns a single field
                 connection.Open();
                 insertCommand.ExecuteNonQuery();
                 string selectStatement =

@@ -81,9 +81,9 @@ namespace EventPropsClasses
         // props class can read in from xml
         public void SetState(DBDataReader dr)
         {
-            this.ID = (Int32)dr["EventID"];
-            this.Code = (string)dr["ProductCode"];
-            this.Description = (string)dr["Description"];
+            this.ID = (Int32)dr["ProductID"];
+            this.Code = ((string)dr["ProductCode"]).Trim();
+            this.Description = ((string)dr["Description"]).Trim();
             this.Price = (decimal)dr["UnitPrice"];
             this.Quantity = (int)dr["OnHandQuantity"];
             this.ConcurrencyID = (Int32)dr["ConcurrencyID"];

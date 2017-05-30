@@ -47,6 +47,7 @@
     <Compile Include="CustomerPropsTest.cs" />
     <Compile Include="EventTests.cs" />
     <Compile Include="ProductPropsTest.cs" />
+    <Compile Include="ProductSQLTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -34,7 +34,11 @@ namespace EventTestClasses
         {
             db = new ProductSQLDB(dataSource);
             prod = new ProductProps();
-           
+            //reset databases to original data
+            DBCommand command = new DBCommand();
+            command.CommandText = "usp_ProductResets";
+            command.CommandType = CommandType.StoredProcedure;
+            db.RunNonQueryProcedure(command);
         }
 
         [Test]
@@ -44,6 +48,69 @@ namespace EventTestClasses
             ProductProps props = (ProductProps)db.Retrieve(1);
             Assert.AreEqual("A4CS", props.Code);
             
+        }
+
+
+        [Test]
+        public void ProductSQLTestRetrieveAll()
+        {
+            List<ProductProps> list = new List<ProductProps>();
+            list = (List<ProductProps>)db.RetrieveAll(list.GetType());
+            Assert.AreEqual(16, list.Count);
+        }
+
+        [Test]
+        public void ProductSQLTestCreate()
+        {
+            ProductProps p = new ProductProps();
+            p.Code = "T999";
+            p.Description = "Testin Dis Shiz!";
+            p.Quantity = 9001;
+            p.Price = 1000000000;
+
+            ProductProps newP = (ProductProps)db.Create(p);
+            ProductProps dbP = (ProductProps)db.Retrieve(newP.ID);
+
+            Assert.AreEqual("T999",dbP.Code);
+        }
+
+        [Test]
+        public void ProductSQLTestUpdate()
+        {
+            ProductProps p = new ProductProps();
+            p.Code = "T999";
+            p.Description = "Testin Dis Shiz!";
+            p.Quantity = 9001;
+            p.Price = 1000000000;
+
+            ProductProps newP = (ProductProps)db.Create(p);
+            ProductProps dbP = (ProductProps)db.Retrieve(newP.ID);
+
+            Assert.AreEqual("T999", dbP.Code);
+            newP.Code = "T998";
+            db.Update(newP);
+            dbP = (ProductProps)db.Retrieve(newP.ID);
+            Assert.AreEqual("T998", dbP.Code);
+
+
+
+        }
+
+        [Test]
+        public void ProductSQLTestDelete()
+        {
+            List<ProductProps> list = new List<ProductProps>();
+            list = (List<ProductProps>)db.RetrieveAll(list.GetType());
+            Assert.AreEqual(16, list.Count);
+            ProductProps p = new ProductProps();
+            p.ID = 1;
+            p.ConcurrencyID = 1;
+
+            db.Delete(p);
+            list = (List<ProductProps>)db.RetrieveAll(list.GetType());
+            Assert.AreEqual(15, list.Count);
+
+
         }
 
     }

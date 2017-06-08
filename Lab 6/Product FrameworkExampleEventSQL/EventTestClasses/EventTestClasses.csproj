@@ -46,12 +46,15 @@
   <ItemGroup>
     <Compile Include="CustomerPropsTest.cs" />
     <Compile Include="CustomerSQLTest.cs" />
+    <Compile Include="CustomerTest.cs" />
     <Compile Include="EventTests.cs" />
     <Compile Include="ProductPropsTest.cs" />
     <Compile Include="ProductSQLTest.cs" />
+    <Compile Include="ProductTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

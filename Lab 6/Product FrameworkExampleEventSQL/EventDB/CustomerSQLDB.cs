@@ -119,6 +119,40 @@ namespace EventDBClasses
 
         }
 
+        public void Delete(int key)
+        {
+            int rowsAffected = 0;
+
+            DBCommand command = new DBCommand();
+
+            command.CommandText = "usp_CustomerStaticDelete";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add("@CustomerID", SqlDbType.Int);
+            command.Parameters["@CustomerID"].Value = key;
+
+
+            try
+            {
+                rowsAffected = RunNonQueryProcedure(command);
+                if (rowsAffected != 1)
+                {
+                    string message = "Record was not deleted. Perhaps the key you specified does not exist.";
+                    throw new Exception(message);
+                }
+            }
+            catch (Exception e)
+            {
+                // log this error
+                throw;
+            }
+            finally
+            {
+                if (mConnection.State == ConnectionState.Open)
+                    mConnection.Close();
+            }
+        }
+
+
         public IBaseProps Retrieve(object key)
         {
             DBDataReader data = null;
